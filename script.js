@@ -330,3 +330,78 @@ console.log(output1) //Answer should be 208.29
 
 let output2 = calAvgCalories([])
 console.log(output2) //Answer should be 0
+
+
+
+// .reverse() => invierte el orden de los elementos de un arr. MUTA EL ARRAY ORIGINAL.
+
+
+let orderedNumbers = [1, 2, 3, 4, 5] // ref 1234
+
+// como hacer copias de array (clonar un array)
+// structuredClone()
+let cloneArray = structuredClone(orderedNumbers) // ref 9876
+// let cloneArray = JSON.parse( JSON.stringify(orderedNumbers) ) // ref 7564
+// JSON.stringify convierte cualquier tipo de data a su version string.
+
+let reversedNumbers = cloneArray.reverse()
+
+console.log("reversedNumbers", reversedNumbers)
+console.log("orderedNumbers", orderedNumbers)
+
+// reverse y sort son metodos que mutan el array original
+
+
+// .sort() => ordena los elementos de un array de acuerdo a una funcion de orden. MUTA EL ARRAY ORIGINAL
+
+let letterNoOrder = ["ac", "k", "aa", "p", "c"]
+
+
+let lettersOrdered = letterNoOrder.sort()
+
+console.log(lettersOrdered)
+
+
+let numbersNoOrder = [7, 10, 2, 33, 6]
+
+// aqui deberian clonar el array
+
+let numbersOrdered = numbersNoOrder.sort((elem2, elem1) => {
+  console.log(elem2, elem1)
+  // el sort debe retornar un numero negativo (si el elemento va antes)
+  // el sort debe retornar un numero positivo (si el elemento va despues)
+  // el sort debe retornar un numero 0 (no deberia haber cambio)
+  if (elem2 > elem1) {
+    return 1
+  } else if (elem1 > elem2) {
+    return -1
+  } else {
+    return 0
+  }
+})
+
+console.log(numbersOrdered)
+
+
+
+const menuSort = [
+  { name: 'Carrots', calories: "150.45" },
+  { name: 'Steak'},
+  { name: 'Broccoli', calories: "120.2342" },
+  { name: 'Chicken', calories: "250.6523" },
+  { name: 'Pizza', calories: "520.124" }
+];
+
+// aqui deberian clonar el array
+
+let sortedFoods = menuSort.sort((elem2, elem1) => {
+  if (elem2.name > elem1.name) {
+    return 1
+  } else if (elem2.name < elem1.name){
+    return -1
+  } else {
+    return 0
+  }
+})
+
+console.log(sortedFoods)
