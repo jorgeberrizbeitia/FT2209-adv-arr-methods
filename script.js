@@ -234,6 +234,7 @@ console.log(allNames) // "Jorge Carolina Iñigo Phantom"
 
 let allCandy = profesores.reduce((acc, eachPerson) => {
   // return acc + eachPerson.candy
+  // siempre espera que le retornes el nuevo valor del accumular
   if (eachPerson.candy !== undefined) {
     return acc + eachPerson.candy
   } else {
@@ -242,3 +243,90 @@ let allCandy = profesores.reduce((acc, eachPerson) => {
 }, 0)
 
 console.log(allCandy)
+
+
+
+// Actividad Reduce
+
+//exercise 1: Return the total population of the given array (data) in the function 'totalpopulation' created below for you
+// the function must return 0 if the array is empty
+const data = [
+  {
+    country: 'USA',
+    pop: 340,
+  },
+  {
+    country: 'France',
+    pop: 133,
+  },
+  {
+    country: 'Bosnia',
+    pop: 5,
+  }
+]
+
+function totalpopulation(arr) {
+
+  // clausulas de guardia
+  if (arr.length === 0) {
+    return 0
+  }
+   // since we are calculating total, initial value of accumulator is set to 0
+   let total = arr.reduce((acc, elem) => {
+      return acc + elem.pop
+   }, 0)
+  return total;
+}
+
+//Invoking and running the function
+let total = totalpopulation(data)
+console.log(total) // console output should be 478
+
+let output = totalpopulation([])
+console.log(output) // console output should be 0
+
+
+
+// exercise 2: Given a menu of foods and their calories, 
+// return the AVERAGE NUMBER of calories as a NUMBER and rounded to TWO DECIMALS for the entire list from the function
+// the function must return null if the array is empty
+// Note: Some elements don't have any calories, skip them in your reduce callback
+// HINT: First calculate the total with .reduce . Then calculate the average
+const menu = [
+  { name: 'Carrots', calories: "150.45" },
+  { name: 'Steak'},
+  { name: 'Broccoli', calories: "120.2342" },
+  { name: 'Chicken', calories: "250.6523" },
+  { name: 'Pizza', calories: "520.124" }
+];
+
+// again... just an arrow function below.
+const calAvgCalories = (arr) => {
+    // clausulas de guardia
+    if (arr.length === 0) {
+      return 0
+    }
+
+   // ... your code here
+   let sumCal = arr.reduce((acc, eachFood) => {
+    if (eachFood.calories === undefined) {
+      return acc
+    } else {
+      let num = Number(eachFood.calories)
+      // let num = parseFloat(eachFood.calories)
+      // let num = +eachFood.calories
+      return acc + num // "150.45"
+    }
+   }, 0)
+
+   let average = sumCal / arr.length
+   return Number( average.toFixed(2) )
+
+}
+
+//Invoking and running the function
+let output1 = calAvgCalories(menu)
+console.log(output1) //Answer should be 208.29 
+
+let output2 = calAvgCalories([])
+console.log(output2) //Answer should be 0
